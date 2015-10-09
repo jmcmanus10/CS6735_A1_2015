@@ -1,0 +1,38 @@
+Project Planning Document
+
+	-General Requirements
+	 1. Read in data
+	 2. Make subsets
+	 3. Calculate Information gain
+	 4.
+	 
+
+	-ID3
+	From Wikipedia: https://en.wikipedia.org/wiki/ID3_algorithm
+	 Algorithm steps:
+	 1. Begin with the original set S as the root node.
+	 2. On each iteration of the algorithm, it iterates through every unused attribute of the set S and calculates the entropy H(S) (or information gain IG(A)) of that attribute.
+	 3. It then selects the attribute which has the smallest entropy (or largest information gain) value.
+	 4. The set S is then split by the selected attribute
+	 5 creating a new node with a smaller Set
+	  
+	 End states 
+	 1. Every element in the subset belongs to the same class (+ or -), then the node is turned into a leaf and labelled with the class of the examples
+	 2. here are no more attributes to be selected, but the examples still do not belong to the same class (some are + and some are -), then the node is turned into a leaf and labelled with the most common class of the examples in the subse
+	 3. there are no examples in the subset, this happens when no example in the parent set was found to be matching a specific value of the selected attribute, for example if there was no example with age >= 100. Then a leaf is created, and labelled with the most common class of the examples in the parent set.
+	
+	-Adaboost
+	From Wikipedia: https://en.wikipedia.org/wiki/AdaBoost
+	
+	-Random Forest (ID3 Stump forest)
+	How to get a stump:
+	 1. For a tree stump run ID3 only on the first attribute
+	From Wikipedia: http://en.wikipedia.org/wiki/Random_forest
+		
+	-Target variable:
+	 1. Mushroom: first column (e, p)
+	 2. Letter: first column (A, B, ...)
+	 3. Ecoli: last column (cp, im, ..)
+	 4. Car: last column (acc, uacc, ..)
+	 5. Breast-cancer: last column (2, 4)
+	
