@@ -1,15 +1,19 @@
-//pretty happy this this so far Oct.20,2015
+//pretty happy with this so far Oct.20,2015
+import java.util.ArrayList;
 
 public class DataInstance {
 private String classifacation;
 private int classifactionIndex;
-private String[] data;
+private ArrayList<String> data;
 
-public DataInstance(String[] data,int cIndex){
+public DataInstance(ArrayList<String> data,int cIndex){
 	this.data = data;
 	this.classifactionIndex = cIndex;
-	this.classifacation = this.data[classifactionIndex];
+	this.classifacation = this.data.get(classifactionIndex);
 }
+
+
+
 
 //setters and getters
 public String getClassifacation() {
@@ -28,11 +32,11 @@ public void setClassifactionIndex(int classifactionIndex) {
 	this.classifactionIndex = classifactionIndex;
 }
 
-public String[] getData() {
+public ArrayList<String> getData() {
 	return data;
 }
 
-public void setData(String[] data) {
+public void setData(ArrayList<String> data) {
 	this.data = data;
 }
 

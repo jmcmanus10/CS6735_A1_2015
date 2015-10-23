@@ -19,6 +19,13 @@ public void addChild(ID3Node<String> child){
 	this.children.add(child);
 }
 		
+
+
+
+
+
+
+
 //Getters and Setters
 		
 		public String getName() {
