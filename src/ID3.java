@@ -1,13 +1,12 @@
 import java.util.ArrayList;
-
 public class ID3 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		DataSet d = new DataSet();
 		String s ="./data/mushroom.data";
 		d.loadData(s);
-		d.printData();
+		//d.printData();
+		d.printAttributeValueList(d.createAttributeValueList(d));
 		
 
 	}
@@ -23,18 +22,26 @@ public class ID3 {
 	//
 	}
 	
-	// to calculate the information gained by splitting a node on the attribute at the given index  
-	
+
+
+
+/**	public ArrayList<String[]> buildParityMatrix(DataSet d){
+		for(DataInstance dI:d.getData()){
+			
+		}
+	} 
+**/
+	 
 	public int findBestAttribute(){
 		return 0;
 	}
-	
 	public boolean isEmpty(DataSet set){
 		return false;
 	}
 	public boolean isPure(DataSet set, int attribute){
 		return false;
 	}
+	// to calculate the information gained by splitting a node on the attribute at the given index 
 	public float calculateInformationGain(int attribute){
 		
 		return 0;

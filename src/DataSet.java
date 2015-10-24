@@ -18,6 +18,42 @@ public class DataSet{
 	}
 	
 	//** creates a new shuffled data set using collections.shuffle
+	public ArrayList<ArrayList<String>> createAttributeValueList(DataSet d){
+		ArrayList<ArrayList<String>> attributeValueList = new ArrayList<ArrayList<String>>();
+		for (int i=0; i<d.getData().get(0).getData().size();i++){
+			ArrayList<String> al = new ArrayList<String>();
+			attributeValueList.add(al);
+			
+		}
+		for(DataInstance dI:d.getData()){
+			//for(String s:dI.getData()){
+			for (int i=0; i<dI.getData().size();i++){
+				String s = dI.getData().get(i);
+			//	System.out.println("first test" +attributeValueList.isEmpty());
+				if(attributeValueList.get(i).isEmpty()){
+					attributeValueList.get(i).add(s);
+				}else{
+					if(attributeValueList.get(i).contains(s)){
+						
+					}
+					else{
+						attributeValueList.get(i).add(s);
+					}
+				}
+			}
+		}
+		
+		return attributeValueList;
+	}
+
+	public void printAttributeValueList(ArrayList<ArrayList<String>> avl){
+		for (ArrayList<String> A: avl){
+			for(String s:A){
+				System.out.print(s+" ");
+			}
+			System.out.println("");
+		}
+	}	
 	public DataSet shuffleMe(){
 		ArrayList dataDeck = this.data;
 		Collections.shuffle(dataDeck);
