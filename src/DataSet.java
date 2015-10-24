@@ -8,9 +8,13 @@ import java.util.Scanner;
 
 public class DataSet{
 	private ArrayList<DataInstance> data;
-	int cIndex =0; // Column index of categorization	
-	public DataSet(ArrayList<DataInstance> data){
+	int cIndex =0; // Column index of categorization
+	private ArrayList<ArrayList<String>> attributeValueList;
+	
+	public DataSet(ArrayList<DataInstance> data,int cIndex){
 		this.data = data;
+		this.cIndex = cIndex;
+		attributeValueList=createAttributeValueList(this);
 	}
 	
 	public DataSet(){
@@ -53,11 +57,38 @@ public class DataSet{
 			}
 			System.out.println("");
 		}
-	}	
+	}
+	
+	public ArrayList<ParityCounter> buildParityMatrix(DataSet d, int index){
+		ArrayList<ParityCounter> pM = new ArrayList<ParityCounter>();
+		
+		for(String av:this.attributeValueList.get(index)){
+			ParityCounter p = new ParityCounter(av,0);
+			pM.add(p);			
+		}
+		
+		for(DataInstance dI:d.getData()){
+			String s = dI.getData().get(index);
+			for(ParityCounter x:pM){
+				if(x.getArrtibuteValue().equals(s)){
+					x.setCount(x.getCount()+1);
+				}
+			}
+		}
+		return pM;
+	}
+	
+	public void printParityMatrix(ArrayList<ParityCounter> pm){
+		for(ParityCounter pc:pm){
+			System.out.println(pc.getArrtibuteValue()+" = "+pc.getCount());
+		}
+		
+	}
+	
 	public DataSet shuffleMe(){
-		ArrayList dataDeck = this.data;
+		ArrayList<DataInstance> dataDeck = this.data;
 		Collections.shuffle(dataDeck);
-		DataSet shuffled = new DataSet(dataDeck);
+		DataSet shuffled = new DataSet(dataDeck,this.cIndex);
 		
 		return shuffled;
 	}
@@ -87,6 +118,7 @@ public class DataSet{
 			   }
 			 //  System.out.println("ended");
 			   scanner.close();
+			   attributeValueList=createAttributeValueList(this);
 			  } catch (FileNotFoundException e) {
 			   e.printStackTrace();
 			  } 
@@ -109,5 +141,15 @@ public class DataSet{
 	public void setcIndex(int cIndex) {
 		this.cIndex = cIndex;
 	}
+
+	public ArrayList<ArrayList<String>> getAttributeValueList() {
+		return attributeValueList;
+	}
+
+	public void setAttributeValueList(ArrayList<ArrayList<String>> attributeValueList) {
+		this.attributeValueList = attributeValueList;
+	}
+	
+	
 	
 }

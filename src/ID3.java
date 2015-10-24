@@ -6,7 +6,11 @@ public class ID3 {
 		String s ="./data/mushroom.data";
 		d.loadData(s);
 		//d.printData();
-		d.printAttributeValueList(d.createAttributeValueList(d));
+		//d.printAttributeValueList(d.createAttributeValueList(d));
+		//d.printParityMatrix(d.buildParityMatrix(d, 16));
+		DataSanitizer ds = new DataSanitizer();
+		ds.unknownsToMostcommon(d);
+		
 		
 
 	}
