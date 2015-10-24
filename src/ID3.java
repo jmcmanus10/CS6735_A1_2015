@@ -9,33 +9,34 @@ public class ID3 {
 		//d.printAttributeValueList(d.createAttributeValueList(d));
 		//d.printParityMatrix(d.buildParityMatrix(d, 16));
 		DataSanitizer ds = new DataSanitizer();
-		ds.unknownsToMostcommon(d);
-		
-		
+		//ds.unknownsToMostcommon(d);
+		ds.removeColumn(d, 1);
+
+
 
 	}
 	//main recursive method of ID3
 	public void Split(ID3Node<String> node){
-	//Find best attribute call it A
-	//For each Value of A
+		//Find best attribute call it A
+		//For each Value of A
 		//Create child node
 		//Create data subset
 		//Stop if Pure
 		//Stop if Empty
 		//else Recurse
-	//
+		//
 	}
-	
 
 
 
-/**	public ArrayList<String[]> buildParityMatrix(DataSet d){
+
+	/**	public ArrayList<String[]> buildParityMatrix(DataSet d){
 		for(DataInstance dI:d.getData()){
-			
+
 		}
 	} 
-**/
-	 
+	 **/
+
 	public int findBestAttribute(){
 		return 0;
 	}
@@ -47,13 +48,13 @@ public class ID3 {
 	}
 	// to calculate the information gained by splitting a node on the attribute at the given index 
 	public float calculateInformationGain(int attribute){
-		
+
 		return 0;
 	}
-	
+
 	//
 	public void evaluate(DataSet testdata){
-		
+
 	}
 
 }

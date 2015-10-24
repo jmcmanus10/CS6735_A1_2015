@@ -2,43 +2,43 @@
 import java.util.ArrayList;
 
 public class DataInstance {
-private String classifacation;
-private int classifactionIndex;
-private ArrayList<String> data;
+	private String classifacation;
+	private int classifactionIndex;
+	private ArrayList<String> data;
 
-public DataInstance(ArrayList<String> data,int cIndex){
-	this.data = data;
-	this.classifactionIndex = cIndex;
-	this.classifacation = this.data.get(classifactionIndex);
-}
-
-
+	public DataInstance(ArrayList<String> data,int cIndex){
+		this.data = data;
+		this.classifactionIndex = cIndex;
+		this.classifacation = this.data.get(classifactionIndex);
+	}
 
 
-//setters and getters
-public String getClassifacation() {
-	return classifacation;
-}
 
-public void setClassifacation(String classifacation) {
-	this.classifacation = classifacation;
-}
 
-public int getClassifactionIndex() {
-	return classifactionIndex;
-}
+	//setters and getters
+	public String getClassifacation() {
+		return classifacation;
+	}
 
-public void setClassifactionIndex(int classifactionIndex) {
-	this.classifactionIndex = classifactionIndex;
-}
+	public void setClassifacation(String classifacation) {
+		this.classifacation = classifacation;
+	}
 
-public ArrayList<String> getData() {
-	return data;
-}
+	public int getClassifactionIndex() {
+		return classifactionIndex;
+	}
 
-public void setData(ArrayList<String> data) {
-	this.data = data;
-}
+	public void setClassifactionIndex(int classifactionIndex) {
+		this.classifactionIndex = classifactionIndex;
+	}
+
+	public ArrayList<String> getData() {
+		return data;
+	}
+
+	public void setData(ArrayList<String> data) {
+		this.data = data;
+	}
 
 
 }
