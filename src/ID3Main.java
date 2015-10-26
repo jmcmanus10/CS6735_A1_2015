@@ -1,22 +1,32 @@
 import java.util.ArrayList;
-public class ID3 {
+public class ID3Main {
 
 	public static void main(String[] args) {
 		DataSet d = new DataSet();
 		String s ="./data/mushroom.data";
 		d.loadData(s);
+		
 		//d.printData();
 		//d.printAttributeValueList(d.createAttributeValueList(d));
 		//d.printParityMatrix(d.buildParityMatrix(d, 16));
 		DataSanitizer ds = new DataSanitizer();
 		//ds.unknownsToMostcommon(d);
-		ds.removeColumn(d, 1);
-
+		//ds.removeColumn(d, 1);
+		//ID3Node root = new ID3Node("root",d);
+		//root.splitNode(2);
+		
+		/*for(ID3Node child: root.getChildren()){
+			child.getDataSet().printData();
+			System.out.println("-------------------");
+		}*/
+		EntropyCalculator ec = new EntropyCalculator();
+		//System.out.println(ec.calculateEntrpoy(d));
+		System.out.println(ec.predictInformationGain(d, 1));
 
 
 	}
 	//main recursive method of ID3
-	public void Split(ID3Node<String> node){
+	public void Split(ID3Node node){
 		//Find best attribute call it A
 		//For each Value of A
 		//Create child node
