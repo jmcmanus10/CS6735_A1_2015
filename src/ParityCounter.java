@@ -27,7 +27,7 @@ public class ParityCounter {
 		return attributeValue;
 	}
 
-	public void setArrtibuteValue(String arrtibuteValue) {
+	public void setArrtibuteValue(String attributeValue) {
 		this.attributeValue = attributeValue;
 	}
 

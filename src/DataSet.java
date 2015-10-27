@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 
 public class DataSet{
@@ -17,6 +16,11 @@ public class DataSet{
 		attributeValueList=createAttributeValueList(this);
 	}
 
+	public DataSet(int cIndex){
+		this.data = new ArrayList<DataInstance>();
+		this.cIndex=cIndex;		
+	}
+	
 	public DataSet(){
 		this.data = new ArrayList<DataInstance>();
 	}
@@ -95,6 +99,7 @@ public class DataSet{
 
 		return shuffled;
 	}
+	
 
 	public void printData(){
 		for(DataInstance x:this.data){
@@ -136,7 +141,7 @@ public class DataSet{
 			//System.out.println("dI.getData().get(d.getcIndex():"+dI.getData().get(d.getcIndex()));
 			if(!(d.getData().get(0).getData().get(cIndex).equals(dI.getData().get(d.getcIndex())))){
 				
-				System.out.println("this data set is not pure");
+			//	System.out.println("this data set is not pure");
 				return false;
 			}
 		}
