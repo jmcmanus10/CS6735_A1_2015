@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class DataSet{
 	private ArrayList<DataInstance> data;
 	int cIndex =0; // Column index of categorization
-	private ArrayList<ArrayList<String>> attributeValueList;
+	private ArrayList<ArrayList<String>> attributeValueList= new ArrayList<ArrayList<String>>() ;
 
 	public DataSet(ArrayList<DataInstance> data,int cIndex){
 		this.data = data;
@@ -61,6 +61,9 @@ public class DataSet{
 
 	public ArrayList<ParityCounter> buildParityMatrix(DataSet d, int index){
 		ArrayList<ParityCounter> pM = new ArrayList<ParityCounter>();
+		if(this.attributeValueList.isEmpty()){
+			this.attributeValueList = this.createAttributeValueList(d);
+		}
 
 		for(String av:this.attributeValueList.get(index)){
 			ParityCounter p = new ParityCounter(av,0);
@@ -126,8 +129,35 @@ public class DataSet{
 
 	}
 	
+	public boolean isPure(DataSet d){
+		for(DataInstance dI:d.getData()){
+			
+			//System.out.println("d.getData().get(0).getData().get(cIndex):"+d.getData().get(0).getData().get(cIndex));
+			//System.out.println("dI.getData().get(d.getcIndex():"+dI.getData().get(d.getcIndex()));
+			if(!(d.getData().get(0).getData().get(cIndex).equals(dI.getData().get(d.getcIndex())))){
+				
+				System.out.println("this data set is not pure");
+				return false;
+			}
+		}
+		
+		return true;
+	}
 
-
+	public String mostCommon(DataSet d, int index){
+		ArrayList<ParityCounter>pM = d.buildParityMatrix(d, index);
+		int most = 0;
+		String biggest ="";
+		for(ParityCounter x:pM){	
+			if (x.getCount()>=most){
+				most =x.getCount();
+				biggest = x.getArrtibuteValue();
+				//	System.out.println(biggest+":"+ most);
+			}
+		}
+		return biggest;
+	}
+	
 	public ArrayList<DataInstance> getData() {
 		return data;
 	}

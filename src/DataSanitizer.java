@@ -16,7 +16,7 @@ public class DataSanitizer {
 			int most = 0;
 			String biggest ="";
 			for(ParityCounter x:pM){	
-				if (x.getCount()>most){
+				if (x.getCount()>=most){
 					most =x.getCount();
 					biggest = x.getArrtibuteValue();
 					//	System.out.println(biggest+":"+ most);
@@ -46,11 +46,71 @@ public class DataSanitizer {
 
 	//takes the highest appearing number and lowest appearing number and divides the range into 10 buckets which are assigned as attributes
 	public DataSet discretizeContinousNumberColumnDumb10(DataSet d, int column){
-		DataSet discretizedData = d;
+		double biggest= Double.parseDouble(d.getData().get(0).getData().get(column));
+		double smallest= Double.parseDouble(d.getData().get(0).getData().get(column));
+		double bucketSize =0;
+				
+		
+		for(DataInstance dI:d.getData()){
 
-
-
-		return discretizedData;
+				String s = dI.getData().get(column);
+				double x = Double.parseDouble(s);
+				
+				biggest = Double.max(biggest, x);
+				smallest = Double.min(smallest, x);
+				System.out.println("s:"+s+" x:"+x+" biggest:"+biggest+" smallest:"+smallest);
+				
+		}
+		//our data sets don't contain negative numbers so a simple subtraction will work here.
+		bucketSize = (biggest-smallest)/10;
+		System.out.println("BucketSize:"+bucketSize);
+		
+		for(DataInstance dI:d.getData()){
+			String s = dI.getData().get(column);
+			double x = Double.parseDouble(s);
+			if(x<=bucketSize +smallest){
+				dI.getData().set(column, "1");
+			}else{
+				if(x>bucketSize +smallest && x<=(2*bucketSize +smallest)){
+					dI.getData().set(column, "2");
+				}else{
+					if(x>2*bucketSize +smallest && x<=(3*bucketSize +smallest)){
+						dI.getData().set(column, "3");
+					}else{
+						if(x>3*bucketSize +smallest && x<=(4*bucketSize +smallest)){
+							dI.getData().set(column, "4");
+						}else{
+							if(x>4*bucketSize +smallest && x<=(5*bucketSize +smallest)){
+								dI.getData().set(column, "5");
+							}else{
+								if(x>5*bucketSize +smallest && x<=(6*bucketSize +smallest)){
+									dI.getData().set(column, "6");
+								}else{
+									if(x>6*bucketSize +smallest && x<=(7*bucketSize +smallest)){
+										dI.getData().set(column, "7");
+									}else{
+										if(x>7*bucketSize +smallest && x<=(8*bucketSize +smallest)){
+											dI.getData().set(column, "8");
+										}else{
+											if(x>8*bucketSize +smallest && x<=(9*bucketSize +smallest)){
+												dI.getData().set(column, "9");
+											}else{
+												if(x>9*bucketSize +smallest){
+													dI.getData().set(column, "10");
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		d.printData();
+		
+		return d;
 	}
 
 	public DataSet removeColumn(DataSet d, int column){

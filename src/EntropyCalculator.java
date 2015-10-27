@@ -12,12 +12,12 @@ public class EntropyCalculator {
 	
 	for(ParityCounter p:pM){
 		
-		System.out.println("name:"+p.getArrtibuteValue()+" count:"+p.getCount());
-		System.out.println("d.getData().size():" +d.getData().size());
+		//System.out.println("name:"+p.getArrtibuteValue()+" count:"+p.getCount());
+		//System.out.println("d.getData().size():" +d.getData().size());
 		double x = ((double)(p.getCount()))/((double)(d.getData().size()));
 		double y = (Math.log(((double)p.getCount())/((double)(d.getData().size())))/(Math.log(2)));
 		double z = -1;
-		System.out.println("x:"+x+"y:"+y+"z:"+z);
+		//System.out.println("x:"+x+"y:"+y+"z:"+z);
 		
 		entropy =(x*y*z)+entropy;
 		//System.out.println("in the counter"+entropy);
@@ -51,10 +51,10 @@ public class EntropyCalculator {
 		//	predictedEntropy += (ds.getData().size()/d.getData().size())*(this.calculateEntrpoy(ds));
 			
 			double a =(double)(ds.getData().size())/(double)(d.getData().size());
-			System.out.println("ds.getData().size():"+ds.getData().size()+" d.getData().size():"+d.getData().size()+ " a:"+a);
+			//System.out.println("ds.getData().size():"+ds.getData().size()+" d.getData().size():"+d.getData().size()+ " a:"+a);
 			
 			double b = (this.calculateEntrpoy(ds));
-			System.out.println("b:"+b);
+			//System.out.println("b:"+b);
 			
 			predictedEntropy += a*b;
 		}

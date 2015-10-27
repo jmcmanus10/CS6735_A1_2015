@@ -6,19 +6,20 @@ public class ID3Node{
 	private String name;
 	private DataSet dataSet;
 	private ID3Node parent;
-	private List<ID3Node> children;
+	private ArrayList<ID3Node> children;
 	private int splitOn = -1; //default to -1 when not split
+	private String catagory;
 
 	public ID3Node(){
 		this.name = "";
 		this.dataSet = new DataSet();
-		this.children = new LinkedList<ID3Node>();
+		this.children = new ArrayList<ID3Node>();
 	}
 	
 	public ID3Node(String name, DataSet dset){
 		this.name=name;
 		this.dataSet=dset;
-		this.children = new LinkedList<ID3Node>();
+		this.children = new ArrayList<ID3Node>();
 	}
 	
 
@@ -32,6 +33,7 @@ public class ID3Node{
 			this.addChild(childNode);
 			childNode.setParent(this);
 			childNode.setName(s);
+			childNode.getDataSet().setcIndex(this.getDataSet().getcIndex());
 		}
 		
 		for(DataInstance dI: dataSet.getData()){
@@ -44,8 +46,17 @@ public class ID3Node{
 		
 	}
 	
-	public int getBestAttribute(DataSet d){
+	public int getBestAttribute(DataSet d, ArrayList<Integer> possibleAttributes){
 		int best = 0;
+		double greatestGain=0;
+		EntropyCalculator ec = new EntropyCalculator();
+		for(Integer i:possibleAttributes){
+			double gg=Math.max(ec.predictInformationGain(d, i.intValue()),greatestGain);
+			if(gg !=greatestGain){
+				greatestGain=gg;
+				best = i.intValue();
+			}
+		}
 		//Entropy calculation in here;
 		return best;
 	}
@@ -86,12 +97,20 @@ public class ID3Node{
 		this.parent = parent;
 	}
 
-	public List<ID3Node> getChildren() {
+	public ArrayList<ID3Node> getChildren() {
 		return children;
 	}
 
-	public void setChildren(List<ID3Node> children) {
+	public void setChildren(ArrayList<ID3Node> children) {
 		this.children = children;
+	}
+
+	public String getCatagory() {
+		return catagory;
+	}
+
+	public void setCatagory(String catagory) {
+		this.catagory = catagory;
 	}
 
 
