@@ -68,6 +68,7 @@ public class EntropyCalculator {
 	}
 	
 	public double predictInformationGain(DataSet d, int attribute){
+		//System.out.println("Calculating entropy for attribute "+attribute);
 		return this.calculateEntrpoy(d)-this.predictEntropy(d, attribute);
 		
 	}

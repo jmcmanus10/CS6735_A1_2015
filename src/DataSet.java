@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class DataSet{
 	private ArrayList<DataInstance> data;
-	int cIndex =0; // Column index of categorization
+	private int cIndex =0; // Column index of categorization
 	private ArrayList<ArrayList<String>> attributeValueList= new ArrayList<ArrayList<String>>() ;
 
 	public DataSet(ArrayList<DataInstance> data,int cIndex){
@@ -28,6 +28,9 @@ public class DataSet{
 	//** creates a new shuffled data set using collections.shuffle
 	public ArrayList<ArrayList<String>> createAttributeValueList(DataSet d){
 		ArrayList<ArrayList<String>> attributeValueList = new ArrayList<ArrayList<String>>();
+//		System.out.println("tester");
+//		System.out.println("dataSet size "+d.getData().toString());
+//		System.out.println("after tester");
 		for (int i=0; i<d.getData().get(0).getData().size();i++){
 			ArrayList<String> al = new ArrayList<String>();
 			attributeValueList.add(al);

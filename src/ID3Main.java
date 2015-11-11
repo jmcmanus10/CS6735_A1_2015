@@ -4,20 +4,36 @@ public class ID3Main {
 	public static void main(String[] args) {
 		
 //		
-		String s ="./data/breast-cancer-wisconsin.data";
-		int cIndex = 10;
-		DataSanitizer cleaner = new DataSanitizer();
+		String s ="./data/play.data";
+		int cIndex = 4;
 		
+//		DataSanitizer cleaner = new DataSanitizer();
+//		
 		DataSet d = new DataSet();
 		d.setcIndex(cIndex);
 		d.loadData(s);
-		d=cleaner.removeColumn(d, 0);
 		
+//		DataSetNinja dsn = new DataSetNinja();
+//		DataSet rd = dsn.createRandomizedDataSet(d);
+		
+		
+		
+//		d=cleaner.removeColumn(d, 0);
+//		
+//		for(int i=0;i<10;i++){
+//		 ID3Tester tester = new ID3Tester();
+//		 d.shuffleMe();
+//		System.out.println(tester.testID3(d, cIndex));
+//		}
+//		
 		for(int i=0;i<10;i++){
-		 ID3Tester tester = new ID3Tester();
-		 d.shuffleMe();
-		System.out.println(tester.testID3(d, cIndex));
-		}
+			 ID3RandomTester tester = new ID3RandomTester();
+			 d.shuffleMe();
+			System.out.println(tester.testID3(d, cIndex, 1));
+			//System.out.println("made it through "+i);
+			}
+		
+		
 //		String s ="./data/play.data";
 //		d.setcIndex(4);
 //		d.loadData(s);

@@ -1,5 +1,4 @@
-import java.util.concurrent.ThreadLocalRandom;
-
+import java.util.Random;
 public class DataSetNinja {
 	
 	public DataSetNinja(){
@@ -19,6 +18,33 @@ public class DataSetNinja {
 		}
 			
 		return myDataSetGroup;
+	}
+	
+	public DataSet createRandomizedDataSet(DataSet d){
+		DataSet rd = new DataSet();
+		int i=0;
+		Random rand = new Random();
+		while(rd.getData().size() < d.getData().size())
+		{
+			if(i>=d.getData().size()){
+				i=i-d.getData().size();
+			}
+			
+			int r =rand.nextInt(2);
+			if (r==0){
+				i++;
+			//	System.out.println("r="+r);
+			}else{
+			//	System.out.println("r="+r);
+				rd.getData().add(d.getData().get(i));
+				i++;
+			}
+			
+		}
+		
+		rd.setAttributeValueList(rd.createAttributeValueList(rd));
+		rd.setcIndex(d.getcIndex());
+		return rd;
 	}
 //	public DataSet randomizedDataSet(DataSet d){
 //		DataSet rD = new DataSet();

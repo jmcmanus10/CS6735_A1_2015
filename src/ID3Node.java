@@ -50,6 +50,7 @@ public class ID3Node{
 		double greatestGain=0;
 		EntropyCalculator ec = new EntropyCalculator();
 		for(Integer i:possibleAttributes){
+			System.out.println("Calculating IG for atrribute "+i.intValue());
 			double gg=Math.max(ec.predictInformationGain(d, i.intValue()),greatestGain);
 			if(gg !=greatestGain){
 				greatestGain=gg;
