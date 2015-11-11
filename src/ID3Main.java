@@ -20,15 +20,15 @@ public class ID3Main {
 		
 //		d=cleaner.removeColumn(d, 0);
 //		
-//		for(int i=0;i<10;i++){
+//		for(int i=0;i<100;i++){
 //		 ID3Tester tester = new ID3Tester();
 //		 d.shuffleMe();
 //		System.out.println(tester.testID3(d, cIndex));
 //		}
 //		
-		for(int i=0;i<10;i++){
+		for(int i=0;i<100;i++){
 			 ID3RandomTester tester = new ID3RandomTester();
-			 d.shuffleMe();
+			d.shuffleMe();
 			System.out.println(tester.testID3(d, cIndex, 1));
 			//System.out.println("made it through "+i);
 			}

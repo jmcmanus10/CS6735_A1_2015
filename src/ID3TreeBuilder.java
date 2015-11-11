@@ -20,25 +20,27 @@ public class ID3TreeBuilder {
 		DataSet d = node.getDataSet();
 		
 		if(!(node.getParent() == null && d.getData().isEmpty())){
-		
+			System.out.println("data set empty "+d.getData().isEmpty());
 		if(d.getData().isEmpty()){
 			node.setCatagory(node.getParent().getDataSet().mostCommon(d, d.getcIndex()));
-			//System.out.println("data set empty");
+			System.out.println("data set empty");
 			return node;
 		}
+		System.out.println("data set is pure "+d.isPure(d));
 		if (d.isPure(d)){
 			node.setCatagory(d.mostCommon(d, d.getcIndex()));
-			//System.out.println("data set is pure");
+			System.out.println("data set is pure");
 			return node;
 		}
+		System.out.println("attributes are empty "+ possibleAttributes.isEmpty() );
 		if(possibleAttributes.isEmpty()){
 			node.setCatagory(d.mostCommon(d, d.getcIndex()));
-		//	System.out.println("attributes are empty");
+			System.out.println("attributes are empty");
 			return node;
 		}
 		node.setCatagory(d.mostCommon(d, d.getcIndex()));
 		int a = node.getBestAttribute(d,possibleAttributes);
-	//	System.out.println("split on a"+a);
+		System.out.println("split on a"+a);
 		node.setSplitOn(a);
 		node.splitNode(a);
 		for(int j=0; j< possibleAttributes.size();j++){
