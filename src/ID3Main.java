@@ -2,116 +2,143 @@ import java.util.ArrayList;
 public class ID3Main {
 
 	public static void main(String[] args) {
-		
-//		
-		String s ="./data/play.data";
-		int cIndex = 4;
-		
-//		DataSanitizer cleaner = new DataSanitizer();
-//		
+		double numTimes=10.0;
+//	Mushroom	
+		String s ="./data/mushroom.data";
+		int cIndex = 0;
+		DataSanitizer cleaner = new DataSanitizer();
 		DataSet d = new DataSet();
 		d.setcIndex(cIndex);
-		d.loadData(s);
+	//	d.loadData(s);
+		d = cleaner.unknownsToMostcommon(d);
 		
-//		DataSetNinja dsn = new DataSetNinja();
-//		DataSet rd = dsn.createRandomizedDataSet(d);
+
 		
-		
-		
-//		d=cleaner.removeColumn(d, 0);
-//		
-//		for(int i=0;i<100;i++){
-//		 ID3Tester tester = new ID3Tester();
-//		 d.shuffleMe();
-//		System.out.println(tester.testID3(d, cIndex));
-//		}
-//		
-		for(int i=0;i<100;i++){
-			 ID3RandomTester tester = new ID3RandomTester();
-			d.shuffleMe();
-			System.out.println(tester.testID3(d, cIndex, 1));
-			//System.out.println("made it through "+i);
-			}
-		
-		
-//		String s ="./data/play.data";
-//		d.setcIndex(4);
+		double id3Total = 0.0;
+		double rdTotal=0.0;
+//		System.out.println("For the Mushroom Data Set:");
+//		for(int i=0;i<numTimes;i++){
+//			ID3Tester id3Tester = new ID3Tester();
+//			 ID3RandomTester rdTester = new ID3RandomTester();
+//			d.shuffleMe();
+//			double id3Result = id3Tester.testID3(d, cIndex);
+//			double rdResult = rdTester.testID3(d, cIndex,30, 5);
+//			System.out.println("in round "+i+" ID3 got: "+id3Result+" Random Forest got: "+ rdResult);
+//			id3Total = id3Total + id3Result;
+//			rdTotal = rdTotal+ rdResult;
+//			
+//			}
+//		System.out.println("The averages are: ID3: "+ id3Total/numTimes +" Random Forest: "+rdTotal/numTimes);
+////Letter-Recognition
+//		s ="./data/letter-recognition.data";
+//		cIndex = 0;
+//		d = new DataSet();
+//		d.setcIndex(cIndex);
 //		d.loadData(s);
 //		
-//		ID3Node root= new ID3Node("root",d);
-//		ArrayList<Integer> i = new ArrayList<Integer>();
-//		for(int j =0; j<d.getData().get(0).getData().size();j++){
-//			if(j!=d.getcIndex()){
-//				Integer k = new Integer(j);
-//				i.add(k);
-//				System.out.println(k);
-//			}
-//		}
-//		ID3TreeBuilder tb = new ID3TreeBuilder();
-//		tb.buildTree(root,i);
+//		//no cleaning needed
 //		
-//		ID3Catagorizer cat = new ID3Catagorizer();
+//		id3Total = 0.0;
+//		rdTotal=0.0;
 //		
-//		for(DataInstance dI: d.getData()){
-//			if(cat.Catagorize(dI, root).equals(dI.getData().get(d.getcIndex()))){
-//			//System.out.println(cat.Catagorize(dI, root));
-//				System.out.println("+");
-//			}else{
-//				System.out.println("-");
+//		System.out.println("For the Letter-Recognition Data Set:");
+//		for(int i=0;i<numTimes;i++){
+//			ID3Tester id3Tester = new ID3Tester();
+//			 ID3RandomTester rdTester = new ID3RandomTester();
+//			d.shuffleMe();
+//			double id3Result = id3Tester.testID3(d, cIndex);
+//			double rdResult = rdTester.testID3(d, cIndex,30, 5);
+//			System.out.println("in round "+i+" ID3 got: "+id3Result+" Random Forest got: "+ rdResult);
+//			id3Total = id3Total + id3Result;
+//			rdTotal = rdTotal+ rdResult;
+//			
 //			}
-//				
-//		}
-		
-//		System.out.println("made it through!");
-//		root.getDataSet().printData();
-//		System.out.println(root.getSplitOn());
-//		for(ID3Node child:root.getChildren()){
-//			System.out.println("------child 1-------------");
-//			System.out.println(child.getSplitOn());
-//			//child.getDataSet().printData();
-//			for(ID3Node child2:child.getChildren()){
-//			System.out.println("------child 2-------------");
-//			System.out.println(child2.getSplitOn());
-//			//child2.getDataSet().printData();
-//			for(ID3Node child3:child2.getChildren()){
-//				System.out.println("------child 3-------------");
-//				System.out.println(child3.getSplitOn());
-//				//child3.getDataSet().printData();
-//				}
-//			}
-//		}
-		/*d.printData();
-		System.out.println("-------------------");
-		d.printAttributeValueList(d.createAttributeValueList(d));
-		System.out.println("-------------------");
-		d.printParityMatrix(d.buildParityMatrix(d, 4));
-		System.out.println("-------------------");
-		DataSanitizer ds = new DataSanitizer();
-		//d=ds.discretizeContinousNumberColumnDumb10(d, 0);
-		//d.printData();
-		//ds.unknownsToMostcommon(d);
-		//ds.removeColumn(d, 1);
-		ID3Node root = new ID3Node("root",d);
-		ArrayList<Integer> i = new ArrayList<Integer>();
-		for(int j =0; j<d.getData().get(0).getData().size();j++){
-			if(j!=d.getcIndex()){
-				Integer k = new Integer(j);
-				i.add(k);
-			}
-		}
-		root.splitNode(root.getBestAttribute(d, i));
-		
-		//root.splitNode(0);
-		
-		for(ID3Node child: root.getChildren()){
-			child.getDataSet().printData();
-			System.out.println("-------------------");
-		}
-		EntropyCalculator ec = new EntropyCalculator();
-		//System.out.println(ec.calculateEntrpoy(d));
-		//System.out.println(ec.predictInformationGain(d, 1));
+//		System.out.println("The averages are: ID3: "+ id3Total/numTimes +" Random Forest: "+rdTotal/numTimes);
 
-*/
+//		Ecoli
+		s ="./data/ecolicomma.data";
+		cIndex = 8;
+		d = new DataSet();	
+		d.setcIndex(cIndex);
+		d.loadData(s);
+		d = cleaner.removeColumn(d, 0);
+		for(int c =0;c<7;c++){
+		d =cleaner.discretizeContinousNumberColumnDumb10(d, c);
+		}
+		id3Total = 0.0;
+		rdTotal=0.0;
+		
+		System.out.println("For the Ecoli Data Set:");
+		for(int i=0;i<numTimes;i++){
+			ID3Tester id3Tester = new ID3Tester();
+			 ID3RandomTester rdTester = new ID3RandomTester();
+			d.shuffleMe();
+			double id3Result = id3Tester.testID3(d, cIndex);
+			double rdResult = rdTester.testID3(d, cIndex,30, 5);
+			System.out.println("in round "+i+" ID3 got: "+id3Result+" Random Forest got: "+ rdResult);
+			id3Total = id3Total + id3Result;
+			rdTotal = rdTotal+ rdResult;
+			//System.out.println(tester.testID3(d, cIndex, 5));
+			//System.out.println("made it through "+i);
+			}
+		System.out.println("The averages are: ID3: "+ id3Total/numTimes +" Random Forest: "+rdTotal/numTimes);
+
+//		//Breast-Cancer-Wisconsin
+//				s ="./data/breast-cancer-wisconsin.data";
+//				cIndex = 10;
+//				d = new DataSet();
+//				d.setcIndex(cIndex);
+//				d.loadData(s);
+//				
+//				d = cleaner.removeColumn(d, 0);
+//				
+//				
+//				id3Total = 0.0;
+//				rdTotal=0.0;
+//				
+//				System.out.println("For the Letter-Recognition Data Set:");
+//				for(int i=0;i<numTimes;i++){
+//					ID3Tester id3Tester = new ID3Tester();
+//					 ID3RandomTester rdTester = new ID3RandomTester();
+//					d.shuffleMe();
+//					double id3Result = id3Tester.testID3(d, cIndex);
+//					double rdResult = rdTester.testID3(d, cIndex,30, 5);
+//					System.out.println("in round "+i+" ID3 got: "+id3Result+" Random Forest got: "+ rdResult);
+//					id3Total = id3Total + id3Result;
+//					rdTotal = rdTotal+ rdResult;
+//					
+//					}
+//				System.out.println("The averages are: ID3: "+ id3Total/numTimes +" Random Forest: "+rdTotal/numTimes);
+//
+//				
+//				//Car
+//				s ="./data/car.data";
+//				cIndex = 6;
+//				d = new DataSet();
+//				d.setcIndex(cIndex);
+//				d.loadData(s);
+//				
+//				//no cleaning needed
+//				
+//				
+//				id3Total = 0.0;
+//				rdTotal=0.0;
+//				
+//				System.out.println("For the Letter-Recognition Data Set:");
+//				for(int i=0;i<numTimes;i++){
+//					ID3Tester id3Tester = new ID3Tester();
+//					 ID3RandomTester rdTester = new ID3RandomTester();
+//					d.shuffleMe();
+//					double id3Result = id3Tester.testID3(d, cIndex);
+//					double rdResult = rdTester.testID3(d, cIndex,30, 5);
+//					System.out.println("in round "+i+" ID3 got: "+id3Result+" Random Forest got: "+ rdResult);
+//					id3Total = id3Total + id3Result;
+//					rdTotal = rdTotal+ rdResult;
+//					
+//					}
+//				System.out.println("The averages are: ID3: "+ id3Total/numTimes +" Random Forest: "+rdTotal/numTimes);
+//				
+		
 	}
 
 }

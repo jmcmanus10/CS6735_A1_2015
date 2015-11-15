@@ -119,16 +119,22 @@ public class DataSet{
 			File file = new File(fileName);
 			Scanner scanner = new Scanner(file);
 			//  scanner.useDelimiter(",");
+			int i =0;
 			while (scanner.hasNext()) {
+				
 				String s =scanner.next();
+			//	System.out.println(""+s);
 				String[] splitS = s.split("[,]");
-
+			//	  System.out.println("DataInstance:"+Arrays.asList(splitS));
 				ArrayList<String> dI = new ArrayList<String>(Arrays.asList(splitS));
 				DataInstance example = new DataInstance(dI,cIndex);
 				this.data.add(example);
+			//	System.out.println("example:" +i);
+				i++;
 			}
 			//  System.out.println("ended");
 			scanner.close();
+			//this.printData();
 			attributeValueList=createAttributeValueList(this);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -136,6 +142,30 @@ public class DataSet{
 
 
 	}
+	
+//	public void loadTabData(String fileName){
+//		this.data = new ArrayList<DataInstance>();
+//		try {
+//			File file = new File(fileName);
+//			Scanner scanner = new Scanner(file);
+//			//  scanner.useDelimiter(",");
+//			while (scanner.hasNext()) {
+//				String s =scanner.next();
+//				String[] splitS = s.split("[	]");
+//
+//				ArrayList<String> dI = new ArrayList<String>(Arrays.asList(splitS));
+//				DataInstance example = new DataInstance(dI,cIndex);
+//				this.data.add(example);
+//			}
+//			//  System.out.println("ended");
+//			scanner.close();
+//			attributeValueList=createAttributeValueList(this);
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} 
+//
+//
+//	}
 	
 	public boolean isPure(DataSet d){
 		for(DataInstance dI:d.getData()){

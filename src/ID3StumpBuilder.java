@@ -22,21 +22,21 @@ public class ID3StumpBuilder {
 		if(!(node.getParent() == null && d.getData().isEmpty())){
 		
 		if(d.getData().isEmpty()){
-			node.setCatagory(node.getParent().getDataSet().mostCommon(d, d.getcIndex()));
+			node.setCategory(node.getParent().getDataSet().mostCommon(d, d.getcIndex()));
 			//System.out.println("data set empty");
 			return node;
 		}
 		if (d.isPure(d)){
-			node.setCatagory(d.mostCommon(d, d.getcIndex()));
+			node.setCategory(d.mostCommon(d, d.getcIndex()));
 			//System.out.println("data set is pure");
 			return node;
 		}
 		if(possibleAttributes.isEmpty()){
-			node.setCatagory(d.mostCommon(d, d.getcIndex()));
+			node.setCategory(d.mostCommon(d, d.getcIndex()));
 		//	System.out.println("attributes are empty");
 			return node;
 		}
-		node.setCatagory(d.mostCommon(d, d.getcIndex()));
+		node.setCategory(d.mostCommon(d, d.getcIndex()));
 		int a = node.getBestAttribute(d,possibleAttributes);
 	//	System.out.println("split on a"+a);
 		node.setSplitOn(a);

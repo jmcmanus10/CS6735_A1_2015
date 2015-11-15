@@ -6,7 +6,7 @@ public class ID3RandomTester {
 		
 	}
 	
-	public double testID3(DataSet d,int cIndex,int n){
+	public double testID3(DataSet d,int cIndex,int numTrees,int randAttributeListSize){
 		//DataSet d = new DataSet();
 		//String s ="./data/play.data";
 	   //String s ="./data/play.data";
@@ -21,28 +21,13 @@ public class ID3RandomTester {
 		
 		dTrain = dsn.createRandomizedDataSet(dTrain);
 		
-		ID3Node root= new ID3Node("root",dTrain);
-		ArrayList<Integer> i = new ArrayList<Integer>();
-		for(int j =0; j<dTrain.getData().get(0).getData().size();j++){
-			if(j!=dTrain.getcIndex()){
-				Integer k = new Integer(j);
-				i.add(k);
-				//System.out.println(k);
-			}
-		}
-		ID3RandomTreeBuilder rtb = new ID3RandomTreeBuilder();
-		//ID3TreeBuilder tb = new ID3TreeBuilder();
-		//tb.buildTree(root,i);
-		rtb.buildTree(root,i,n);
-		
-		ID3Catagorizer cat = new ID3Catagorizer();
-		
+		ID3Forest myForest = buildForest(dTrain, numTrees, randAttributeListSize);
 		double right=0;
 		double wrong=0;
 		for(DataInstance dI: dTest.getData()){
-			if(cat.Catagorize(dI, root).equals(dI.getData().get(d.getcIndex()))){
+			if(myForest.categorize(dI).equals(dI.getData().get(d.getcIndex()))){
 				right++;
-				//System.out.println("+");
+			//	System.out.println("+");
 			}else{
 			//	System.out.println("-");
 				wrong++;
@@ -51,5 +36,49 @@ public class ID3RandomTester {
 		}
 		
 		return right/(right+wrong);
+		
+		
+		
+	}
+	
+	public ID3Forest buildForest(DataSet dTrain, int numTrees, int randAttributeListSize){
+		ID3Forest myForest = new ID3Forest();
+		for(int i=0;i<numTrees;i++){
+			
+			ID3Node root= new ID3Node("root",dTrain);
+			ArrayList<Integer> possibleAttributesList = new ArrayList<Integer>();
+			for(int j =0; j<dTrain.getData().get(0).getData().size();j++){
+				if(j!=dTrain.getcIndex()){
+					Integer k = new Integer(j);
+					possibleAttributesList.add(k);
+					//System.out.println(k);
+				}
+			}
+			ID3RandomTreeBuilder rtb = new ID3RandomTreeBuilder();
+			//ID3TreeBuilder tb = new ID3TreeBuilder();
+			//tb.buildTree(root,i);
+			rtb.buildTree(root,possibleAttributesList,randAttributeListSize);
+			
+			ID3Categorizer cat = new ID3Categorizer();
+			
+			double right=0;
+			double wrong=0;
+			for(DataInstance dI: dTrain.getData()){
+				if(cat.Categorize(dI, root).equals(dI.getData().get(dTrain.getcIndex()))){
+					right++;
+					//System.out.println("+");
+				}else{
+				//	System.out.println("-");
+					wrong++;
+				}
+					
+			}
+			
+			Double weight = right/(right+wrong);
+			myForest.addTree(root, weight);
+			
+			
+		}
+		return myForest;
 	}
 }

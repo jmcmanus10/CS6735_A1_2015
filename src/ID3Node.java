@@ -7,7 +7,7 @@ public class ID3Node{
 	private ID3Node parent;
 	private ArrayList<ID3Node> children;
 	private int splitOn = -1; //default to -1 when not split
-	private String catagory;
+	private String category;
 
 	public ID3Node(){
 		this.name = "";
@@ -50,8 +50,8 @@ public class ID3Node{
 		double greatestGain=0;
 		EntropyCalculator ec = new EntropyCalculator();
 		for(Integer i:possibleAttributes){
-			System.out.println("Calculating IG for atrribute "+i.intValue());
-			System.out.println("predicted information gain:"+ ec.predictInformationGain(d, i.intValue()));
+			//System.out.println("Calculating IG for atrribute "+i.intValue());
+			//System.out.println("predicted information gain:"+ ec.predictInformationGain(d, i.intValue()));
 			//double gg=Math.max(ec.predictInformationGain(d, i.intValue()),greatestGain);
 			double gg=ec.predictInformationGain(d, i.intValue());
 			if(gg >=greatestGain){
@@ -107,12 +107,12 @@ public class ID3Node{
 		this.children = children;
 	}
 
-	public String getCatagory() {
-		return catagory;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setCatagory(String catagory) {
-		this.catagory = catagory;
+	public void setCategory(String catagory) {
+		this.category = catagory;
 	}
 
 

@@ -31,12 +31,12 @@ public class ID3Tester {
 		ID3TreeBuilder tb = new ID3TreeBuilder();
 		tb.buildTree(root,i);
 		
-		ID3Catagorizer cat = new ID3Catagorizer();
+		ID3Categorizer cat = new ID3Categorizer();
 		
 		double right=0;
 		double wrong=0;
 		for(DataInstance dI: dTest.getData()){
-			if(cat.Catagorize(dI, root).equals(dI.getData().get(d.getcIndex()))){
+			if(cat.Categorize(dI, root).equals(dI.getData().get(d.getcIndex()))){
 				right++;
 				//System.out.println("+");
 			}else{
