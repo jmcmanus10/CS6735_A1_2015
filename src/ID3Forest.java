@@ -26,18 +26,46 @@ public class ID3Forest {
 
 	public String categorize(DataInstance dI){
 		String s = "";
-	//	ArrayList<WeightedCategory>
+		double w =0.0;
+		ArrayList<WeightedCategory> voter = new ArrayList<WeightedCategory>();
 		
-		for(ID3Node tree:forest){
-			s = cat.Categorize(dI, tree);
+		//for(ID3Node tree:this.forest){
+		for(int i = 0; i<this.forest.size();i++){
+		
+			s = cat.Categorize(dI, this.forest.get(i));
+			w = this.weights.get(i);
+			boolean contained = false;
 			
+			for(WeightedCategory vote:voter){
+				if(vote.getArrtibuteValue().equals(s)){
+					contained =true;
+					vote.setweight(vote.getweight()+w);
+				}
+			}
+			if(!contained){
+				WeightedCategory wc = new WeightedCategory(s,w);
+				voter.add(wc);
+			}
+
+		
 		}
+		double max =0.0;
+		
+		for(WeightedCategory wc:voter){
+			if(wc.getweight()>=max){
+				max=wc.getweight();
+				s=wc.getArrtibuteValue();
+			}
+		}
+		
+		
 		
 		return s;
 	}
 	
 public void addTree(ID3Node tree, Double weight){
-		
+		forest.add(tree);
+		weights.add(weight);
 }
 	
 	public ArrayList<ID3Node> getForest() {

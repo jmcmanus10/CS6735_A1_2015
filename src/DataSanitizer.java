@@ -58,12 +58,12 @@ public class DataSanitizer {
 				
 				biggest = Double.max(biggest, x);
 				smallest = Double.min(smallest, x);
-				System.out.println("s:"+s+" x:"+x+" biggest:"+biggest+" smallest:"+smallest);
+			//	System.out.println("s:"+s+" x:"+x+" biggest:"+biggest+" smallest:"+smallest);
 				
 		}
 		//our data sets don't contain negative numbers so a simple subtraction will work here.
 		bucketSize = (biggest-smallest)/10;
-		System.out.println("BucketSize:"+bucketSize);
+	//	System.out.println("BucketSize:"+bucketSize);
 		
 		for(DataInstance dI:d.getData()){
 			String s = dI.getData().get(column);
@@ -108,7 +108,7 @@ public class DataSanitizer {
 				}
 			}
 		}
-		d.printData();
+		//d.printData();
 		
 		return d;
 	}

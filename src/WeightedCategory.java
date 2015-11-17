@@ -1,14 +1,14 @@
 
-public class WeightedCatagory {
+public class WeightedCategory {
 	private double weight;
 	private String attributeValue;
 
 
-	public WeightedCatagory(){
+	public WeightedCategory(){
 
 	}
 
-	public WeightedCatagory(String attributeValue, double weight){
+	public WeightedCategory(String attributeValue, double weight){
 		this.attributeValue = attributeValue;
 		this.weight = weight;
 	}

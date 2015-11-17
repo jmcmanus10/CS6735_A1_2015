@@ -21,13 +21,15 @@ public class ID3RandomTester {
 		
 		dTrain = dsn.createRandomizedDataSet(dTrain);
 		
-		ID3Forest myForest = buildForest(dTrain, numTrees, randAttributeListSize);
+		ID3Forest myForest = this.buildForest(dTrain, numTrees, randAttributeListSize);
 		double right=0;
 		double wrong=0;
 		for(DataInstance dI: dTest.getData()){
+			//System.out.println("myForest.categorize(dI) ="+myForest.categorize(dI));
+			
 			if(myForest.categorize(dI).equals(dI.getData().get(d.getcIndex()))){
 				right++;
-			//	System.out.println("+");
+				//System.out.println("+");
 			}else{
 			//	System.out.println("-");
 				wrong++;
@@ -75,6 +77,7 @@ public class ID3RandomTester {
 			}
 			
 			Double weight = right/(right+wrong);
+			//System.out.println("Weight of tree "+i+" is "+weight);
 			myForest.addTree(root, weight);
 			
 			

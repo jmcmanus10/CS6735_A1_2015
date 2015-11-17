@@ -5,56 +5,22 @@ public class ID3StumpBuilder {
 	public ID3StumpBuilder(){
 		
 	}
-
 	
-	//Find best attribute call it A
-			//For each Value of A
-			//Create child node
-			//Create data subset
-			//Stop if Pure
-			//Stop if Empty
-			//else Recurse
-			//
-	
-	public ID3Node buildTree(ID3Node node,ArrayList<Integer>possibleAttributes){
-		DataSet d = node.getDataSet();
-		
-		if(!(node.getParent() == null && d.getData().isEmpty())){
-		
-		if(d.getData().isEmpty()){
-			node.setCategory(node.getParent().getDataSet().mostCommon(d, d.getcIndex()));
-			//System.out.println("data set empty");
-			return node;
-		}
-		if (d.isPure(d)){
-			node.setCategory(d.mostCommon(d, d.getcIndex()));
-			//System.out.println("data set is pure");
-			return node;
-		}
-		if(possibleAttributes.isEmpty()){
-			node.setCategory(d.mostCommon(d, d.getcIndex()));
-		//	System.out.println("attributes are empty");
-			return node;
-		}
+	public ID3Node buildStump(DataSet d,int splitAttribute){
+		ID3Node node = new ID3Node("root",d);
+		node.setSplitOn(splitAttribute);
 		node.setCategory(d.mostCommon(d, d.getcIndex()));
-		int a = node.getBestAttribute(d,possibleAttributes);
-	//	System.out.println("split on a"+a);
-		node.setSplitOn(a);
-		node.splitNode(a);
-		for(int j=0; j< possibleAttributes.size();j++){
-			if(possibleAttributes.get(j)==a){
-				possibleAttributes.remove(j);
+		node.splitNode(splitAttribute);
+		for(ID3Node child:node.getChildren()){
+			if(child.getDataSet().getData().isEmpty()){
+				System.out.println("parents most common");
+			//	child.setCategory(child.getParent().getDataSet().mostCommon(child.getParent().getDataSet(), d.getcIndex()));
+			}else{
+				child.setCategory(child.getDataSet().mostCommon(child.getDataSet(), d.getcIndex()));
+			//	System.out.println("childs most common");
 			}
 		}
-		for(ID3Node child:node.getChildren()){
-		//	System.out.println("recursing on childern");
-			buildTree(child,possibleAttributes);
-		}
-				
-		return node;
-		}else{
 		return node;
 		}
-	}
 
 }
